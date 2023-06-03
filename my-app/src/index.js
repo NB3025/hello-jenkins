@@ -14,7 +14,8 @@ class OnlineEd extends React.Component {
         { id: 3, name: 'Calculus', instructor: 'Bob Johnson', rating: 4.8 },
         { id: 4, name: 'Introduction to Philosophy', instructor: 'Mary Brown', rating: 4.0 },
         { id: 5, name: 'History of Art', instructor: 'Tom Wilson', rating: 4.6 },
-        { id: 6, name: 'NB', instructor: 'Tom Wilson', rating: 5.0 }
+        { id: 6, name: 'NB', instructor: 'Tom Wilson', rating: 5.0 },
+        { id: 6, name: 'webhook', instructor: 'Tom Wilson', rating: 5.0 }
       ]
     };
   }
