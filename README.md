@@ -12,7 +12,6 @@ git clone https://github.com/aws-samples/private5g-cloud-deployment.git
 
 ## Procedure to follow:
 ### Step1. Pre-install:
-![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2Fbaf87a4e-ea2b-46a1-a603-6e38df6426c2%2FDemo-all-Architecture_v2-1._%25EC%259D%25B8%25ED%2594%2584%25EB%259D%25BC%25EA%25B5%25AC%25EC%2584%25B1_v3.drawio.png?table=block&id=161f065a-e189-4077-96f7-99880e272e8a&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 Install the CDK
 ```bash
@@ -77,6 +76,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <br>
 
 ### Step2. Configure your infrastructure:
+![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2Fbaf87a4e-ea2b-46a1-a603-6e38df6426c2%2FDemo-all-Architecture_v2-1._%25EC%259D%25B8%25ED%2594%2584%25EB%259D%25BC%25EA%25B5%25AC%25EC%2584%25B1_v3.drawio.png?table=block&id=161f065a-e189-4077-96f7-99880e272e8a&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 Deploy a VPC, EKS Cluster, and Nodegroup to deploy 5G Core.
 ```bash
