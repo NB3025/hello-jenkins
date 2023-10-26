@@ -1,16 +1,16 @@
 # Private5G Cloud Deployment
 
 
-#Overview  
-##This source introduces how to deploy 5G Core on AWS Cloud for a private 5G service and build and operate a CI/CD pipeline.
+# Overview  
+## This source introduces how to deploy 5G Core on AWS Cloud for a private 5G service and build and operate a CI/CD pipeline.
 --------
-##Download
+## Download
 ```bash
 git clone https://github.com/aws-samples/private5g-cloud-deployment.git
 ```
 --------
-##Procedure to follow:
-###Step1. Pre-install:
+## Procedure to follow:
+### Step1. Pre-install:
 Install the CDK
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
@@ -72,7 +72,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 --------
 
-###Step2. Configure your infrastructure:
+### Step2. Configure your infrastructure:
 Deploy a VPC, EKS Cluster, and Nodegroup to deploy 5G Core.
 ```bash
 cd ~/private5g-cloud-deployment/app-cdk
@@ -117,7 +117,7 @@ Use the kubectl command to view the deployed cluster.
 kubectl get svc
 ```
 --------
-###Step3. Configure your CI/CD pipeline:
+### Step3. Configure your CI/CD pipeline:
 Deploy CodePipeline.
 ```bash
 cd ~/private5g-cloud-deployment/app-cdk/
@@ -125,7 +125,7 @@ cdk deploy pipeline-cdk-stack
 ```
 
 ---
-###Step4. Deploying 5G core:
+### Step4. Deploying 5G core:
 Run the command below to get the values to write to your config file.
 ```bash
 NGRoleArn=$(aws ssm get-parameters --names "NGRoleArn" | grep "Value" | cut -d'"' -f4)
@@ -272,7 +272,7 @@ ping 10.1.30.69
 ```
 ------
 
-###Step5. Connect to On-Prem with a VPN:
+### Step5. Connect to On-Prem with a VPN:
 Deploy a customer VPC
 ```bash
 cd ~/private5g-cloud-deployment/app-cdk/
@@ -295,7 +295,7 @@ cdk deploy vpn-route-cdk-stack
 
 ------
 
-###Step6. Configure your test environment:
+### Step6. Configure your test environment:
 <br>
 Configure CGW using StrongSWAN and Quagga.
 
@@ -433,7 +433,7 @@ ip address show uesimtun0
 ```
 
 ------
-###Step7. Test:
+### Step7. Test:
 <br>
 Connect to the local machine where you deployed the CDK and connect to each 5G Core Pod with the commands below.
 
@@ -457,7 +457,7 @@ ping 8.8.8.8 -I uesimtun0
 ```
 
 ------
-###Step8. Deploying with a CI/CD pipeline:
+### Step8. Deploying with a CI/CD pipeline:
 <br>
 Modify the source code for the patch.
 
