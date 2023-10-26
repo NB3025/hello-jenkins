@@ -4,6 +4,7 @@
 # Overview  
 ### This source introduces how to deploy 5G Core on AWS Cloud for a private 5G service and build and operate a CI/CD pipeline.
 ![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F82428a33-def2-444a-b8f7-9a568e2af46d%2FDemo-all-Architecture_v2-0.%25EC%25A0%2584%25EC%25B2%25B4%25EA%25B5%25AC%25EC%2584%25B1%25EB%258F%2584_v3.drawio.png?table=block&id=6fd567e5-dc3b-4ee1-9591-36da4af3a19e&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
+
 ## Download
 ```bash
 git clone https://github.com/aws-samples/private5g-cloud-deployment.git
@@ -11,6 +12,8 @@ git clone https://github.com/aws-samples/private5g-cloud-deployment.git
 
 ## Procedure to follow:
 ### Step1. Pre-install:
+![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2Fbaf87a4e-ea2b-46a1-a603-6e38df6426c2%2FDemo-all-Architecture_v2-1._%25EC%259D%25B8%25ED%2594%2584%25EB%259D%25BC%25EA%25B5%25AC%25EC%2584%25B1_v3.drawio.png?table=block&id=161f065a-e189-4077-96f7-99880e272e8a&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
+
 Install the CDK
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
