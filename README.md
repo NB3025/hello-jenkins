@@ -83,6 +83,7 @@ Deploy a VPC, EKS Cluster, and Nodegroup to deploy 5G Core.
 cd ~/private5g-cloud-deployment/app-cdk
 source .venv/bin/activate
 ```
+<br>
 
 Open the file in the path below and write the value of the user variable in each entry.
 Enter the key pair name and AZ information created above, as well as the VPC's CIDR information.
@@ -90,11 +91,14 @@ Enter the key pair name and AZ information created above, as well as the VPC's C
 vi ~/private5g-cloud-deployment/app-cdk/app_cdk/config/variables.json
 ```
 
+<br>
+
 Deploy the VPCs defined by the CDK.
 ```bash
 cd ~/private5g-cloud-deployment/app-cdk/
 cdk deploy eks-vpc-cdk-stack
 ```
+<br>
 
 Deploy the EKS Cluster defined by the CDK.
 The EKS Cluster was created using the CDK to generate the Yaml used for CloudFormation and created using CloudFormation.
@@ -103,12 +107,14 @@ cd ~/private5g-cloud-deployment/app-cdk/
 cdk synth eks-infra-cf-stack > ./cf/eks-infra-cf.yaml
 aws cloudformation create-stack --stack-name eks-infra-stack --template-body file://./cf/eks-infra-cf.yaml --capabilities CAPABILITY_NAMED_IAM
 ```
+<br>
 
 Deploy an EKS Nodegroup.
 ```bash
 cd ~/private5g-cloud-deployment/app-cdk/
 cdk deploy eks-vpc-cdk-stack no-multus-nodegroup-stack
 ```
+<br>
 
 To use the created EKS Cluster, connect to it using the kubectl command.
 ```bash
@@ -117,6 +123,8 @@ eks_cluster_name=$(aws ssm get-parameters --names "EKSClusterName" | grep "Value
 aws eks update-kubeconfig --name [cluster_name] --region [region]
 aws eks update-kubeconfig --name $eks_cluster_name --region us-west-2
 ```
+<br>
+
 Use the kubectl command to view the deployed cluster.
 ```bash
 kubectl get svc
@@ -125,6 +133,9 @@ kubectl get svc
 <br>
 
 ### Step3. Configure your CI/CD pipeline:
+![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2Fdd04b158-43a7-48d9-b97c-eff4245819b0%2FDemo-all-Architecture_v2-2._CICD%25EA%25B5%25AC%25EC%2584%25B1_v3.drawio.png?table=block&id=1a2963d5-1cc0-4e96-9ee4-98a39d2a434b&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
+<br>
+
 Deploy CodePipeline.
 ```bash
 cd ~/private5g-cloud-deployment/app-cdk/
@@ -134,6 +145,9 @@ cdk deploy pipeline-cdk-stack
 <br>
 
 ### Step4. Deploying 5G core:
+![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2Fadf14ab4-acaa-4d34-ae97-e1d6c1ba4b23%2FDemo-all-Architecture_v2-3._5G_Core%25EB%25B0%25B0%25ED%258F%25AC_v3.drawio.png?table=block&id=8d39dad9-2586-4db0-8e39-a1e3ab048efd&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
+<br>
+
 Run the command below to get the values to write to your config file.
 ```bash
 NGRoleArn=$(aws ssm get-parameters --names "NGRoleArn" | grep "Value" | cut -d'"' -f4)
@@ -242,7 +256,7 @@ Verify your 5G Core deployment
 ```bash
 kubectl get po -n open5gs
 ```
-
+![Result](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F735ecb49-857b-485f-9633-f5ce748d4add%2FUntitled.png?table=block&id=ac3dea77-5750-4a90-b2e6-f76cc68fe4f2&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 <br>
 Register the IP addresses of AMF and UPF in the Route53 private hosting zone.
 
@@ -278,10 +292,14 @@ ping 10.1.30.12
 # SMF Pod -> AMF Pod
 ping 10.1.30.69
 ```
+![test result](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F6d06749b-3947-45d5-a3d2-c2a13e25550c%2FUntitled.png?table=block&id=9c253da4-94f0-44ea-a49d-bf2016b89b40&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 <br>
 
 ### Step5. Connect to On-Prem with a VPN:
+![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F17378504-167f-499d-93a8-25021a3f76df%2FDemo-all-Architecture_v2-4._VPN%25EA%25B5%25AC%25EC%2584%25B1_v3.drawio.png?table=block&id=a135a7b9-cf20-46ee-9ac8-d147b431d970&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
+<br>
+
 Deploy a customer VPC
 ```bash
 cd ~/private5g-cloud-deployment/app-cdk/
@@ -306,6 +324,14 @@ cdk deploy vpn-route-cdk-stack
 <br>
 
 ### Step6. Configure your test environment:
+<br>
+
+Modify the routing configuration for communication from the RAN segment to the 5G Core.
+
+Modify traffic for 0.0.0.0/0 to be directed to the instance (customerGWInstance).
+
+![](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2Fbf20cd2c-b68f-4fb6-b7a9-3919b853ed97%2FUntitled.png?table=block&id=49a3de8e-cf4a-444c-8886-4702ff37725a&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
+
 <br>
 Configure CGW using StrongSWAN and Quagga.
 
@@ -430,6 +456,7 @@ sudo su
 cd ~/UERANSIM/build
 ./nr-gnb -c ../config/open5gs-gnb.yaml
 ```
+![gnb](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2Fd9f29925-e788-4c77-aeb9-d4a89e38cb26%2FUntitled.png?table=block&id=fe61e2d9-0f27-4cb2-aadc-672ad1fafcf3&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 
 ```bash
@@ -437,14 +464,18 @@ sudo su
 cd ~/UERANSIM/build
 ./nr-ue -c ../config/open5gs-ue.yaml
 ```
+![ue](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2Fcf44f3be-754e-4d31-9a0d-2fec70a1f34f%2FUntitled.png?table=block&id=a2cf55c1-b028-4963-9591-cd330f0dea8f&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 ```bash
 ip address show uesimtun0
 ```
+![uesimtun](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F07d057a8-46a6-47e5-b511-d4cecd7ff064%2FUntitled.png?table=block&id=eb9c0458-6f18-4e09-9877-3523553c5b6a&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 <br>
 
 ### Step7. Test:
+![](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F6bf9cf87-2b74-4df6-a9ec-f3d3e29887f1%2FUntitled.png?table=block&id=b2e32b1e-140b-46bf-bbd8-d4ff56f84d1a&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
+
 <br>
 Connect to the local machine where you deployed the CDK and connect to each 5G Core Pod with the commands below.
 
@@ -459,6 +490,9 @@ tail -f /var/log/amf.log
 tail -f /var/log/smf.log
 tail -f /var/log/up.log
 ```
+![amflog](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F3de8fcb1-8f71-4863-9f17-37f2805ef2fd%2FUntitled.png?table=block&id=32b16014-72a3-4375-a5c7-d8dc0cbee901&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
+
+![smflog](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F15e6325c-0d27-45ef-aa24-0c3da2876088%2FUntitled.png?table=block&id=e3bd2246-8e86-4fbf-bddf-d8782c0d42fb&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 <br>
 Connect to the CustomerRANInstance and run the ping command using the created GTP tunnel
 
@@ -466,6 +500,7 @@ Connect to the CustomerRANInstance and run the ping command using the created GT
 # CustomerRANInstance
 ping 8.8.8.8 -I uesimtun0
 ```
+![pingtest](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F0b5a5481-91e4-4b13-98e9-14b82199f2f0%2FUntitled.png?table=block&id=f23b26d0-19d4-42d4-a63e-bde68ea51720&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 <br>
 
@@ -572,3 +607,18 @@ tail -f /var/log/upf.log
 
 tcpdump -i any -ne -l icmp
 ```
+
+###Cleanup
+<br>
+
+Clean up your resources with cdk destroy and Cloudformation.
+```bash
+cdk destroy
+```
+
+
+
+License
+-------
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
