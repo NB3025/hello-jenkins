@@ -72,6 +72,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
 <br>
+
 ### Step2. Configure your infrastructure:
 
 Deploy a VPC, EKS Cluster, and Nodegroup to deploy 5G Core.
