@@ -119,6 +119,8 @@ Use the kubectl command to view the deployed cluster.
 kubectl get svc
 ```
 
+<br>
+
 ### Step3. Configure your CI/CD pipeline:
 Deploy CodePipeline.
 ```bash
@@ -126,7 +128,8 @@ cd ~/private5g-cloud-deployment/app-cdk/
 cdk deploy pipeline-cdk-stack
 ```
 
----
+<br>
+
 ### Step4. Deploying 5G core:
 Run the command below to get the values to write to your config file.
 ```bash
@@ -273,6 +276,7 @@ ping 10.1.30.12
 ping 10.1.30.69
 ```
 
+<br>
 
 ### Step5. Connect to On-Prem with a VPN:
 Deploy a customer VPC
@@ -296,6 +300,7 @@ cdk deploy vpn-route-cdk-stack
 ```
 
 
+<br>
 
 ### Step6. Configure your test environment:
 <br>
@@ -434,6 +439,7 @@ cd ~/UERANSIM/build
 ip address show uesimtun0
 ```
 
+<br>
 
 ### Step7. Test:
 <br>
@@ -457,6 +463,8 @@ Connect to the CustomerRANInstance and run the ping command using the created GT
 # CustomerRANInstance
 ping 8.8.8.8 -I uesimtun0
 ```
+
+<br>
 
 
 ### Step8. Deploying with a CI/CD pipeline:
