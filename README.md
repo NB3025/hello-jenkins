@@ -2,13 +2,13 @@
 
 
 # Overview  
-## This source introduces how to deploy 5G Core on AWS Cloud for a private 5G service and build and operate a CI/CD pipeline.
---------
+### This source introduces how to deploy 5G Core on AWS Cloud for a private 5G service and build and operate a CI/CD pipeline.
+
 ## Download
 ```bash
 git clone https://github.com/aws-samples/private5g-cloud-deployment.git
 ```
---------
+
 ## Procedure to follow:
 ### Step1. Pre-install:
 Install the CDK
@@ -70,7 +70,7 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s htt
 chmod +x kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 ```
---------
+
 
 ### Step2. Configure your infrastructure:
 Deploy a VPC, EKS Cluster, and Nodegroup to deploy 5G Core.
@@ -116,7 +116,7 @@ Use the kubectl command to view the deployed cluster.
 ```bash
 kubectl get svc
 ```
---------
+
 ### Step3. Configure your CI/CD pipeline:
 Deploy CodePipeline.
 ```bash
@@ -270,7 +270,7 @@ ping 10.1.30.12
 # SMF Pod -> AMF Pod
 ping 10.1.30.69
 ```
-------
+
 
 ### Step5. Connect to On-Prem with a VPN:
 Deploy a customer VPC
@@ -293,7 +293,7 @@ cd ~/private5g-cloud-deployment/app-cdk/
 cdk deploy vpn-route-cdk-stack
 ```
 
-------
+
 
 ### Step6. Configure your test environment:
 <br>
@@ -432,7 +432,7 @@ cd ~/UERANSIM/build
 ip address show uesimtun0
 ```
 
-------
+
 ### Step7. Test:
 <br>
 Connect to the local machine where you deployed the CDK and connect to each 5G Core Pod with the commands below.
@@ -456,7 +456,7 @@ Connect to the CustomerRANInstance and run the ping command using the created GT
 ping 8.8.8.8 -I uesimtun0
 ```
 
-------
+
 ### Step8. Deploying with a CI/CD pipeline:
 <br>
 Modify the source code for the patch.
