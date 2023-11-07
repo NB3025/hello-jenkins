@@ -8,6 +8,11 @@ Overview
 
 ### 해당 프로젝트는 Private 5G 서비스를 위해 AWS 클라우드에 5G 코어를 배포하고 CI/CD 파이프라인을 구축하여 운영하는 방법을 소개합니다.
 
+Architecture
+------------
+
+해당 프로젝트를 통해 최종적으로 구성되는 Architecture는 아래와 같습니다.
+
 ![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F82428a33-def2-444a-b8f7-9a568e2af46d%2FDemo-all-Architecture_v2-0.%25EC%25A0%2584%25EC%25B2%25B4%25EA%25B5%25AC%25EC%2584%25B1%25EB%258F%2584_v3.drawio.png?table=block&id=6fd567e5-dc3b-4ee1-9591-36da4af3a19e&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 ## Download
@@ -16,9 +21,9 @@ git clone https://github.com/aws-samples/private5g-cloud-deployment.git
 ```
 
 ## Procedure to follow:
-### Step1. Pre-install:
+### Step1. 사전 준비:
 
-Install the CDK
+AWS CDK 설치
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 source .bashrc
@@ -30,7 +35,7 @@ nvm install node
 npm install -g aws-cdk
 ```
 
-Install and configure the AWS CLI
+AWS CLI 구성
 ```bash
 sudo yum install awscli
 ```
@@ -43,14 +48,14 @@ Default region name [None]: [your region]
 Default output format [None]: json
 ```
 
-Download the code
+소스코드 다운로드
 ```bash
 cd ~
 git clone https://github.com/aws-samples/private5g-cloud-deployment.git
 ```
 
-This project deploys 5G Core using the source code provided by open5gs. 
-(https://github.com/open5gs/open5gs)
+open5gs 다운로드
+해당 프로젝트에서는 5G 코어를 open5gs에서 제공하는 소스코드를 사용합니다.(https://github.com/open5gs/open5gs)
 ```bash
 cd ~/private5g-cloud-deployment/my_open5gs
 git clone https://github.com/open5gs/open5gs.git
@@ -71,7 +76,7 @@ pip install -r requirements.txt
 cdk bootstrap
 ```
 
-Install Kubectl
+Kubectl 설치
 ```bash
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 chmod +x kubectl
