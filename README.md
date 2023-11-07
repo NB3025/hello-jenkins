@@ -1,8 +1,13 @@
-# Private5G Cloud Deployment
+private5g-cloud-deployment
+==========================
 
+[한국어](README-ko.md) | [English](README-en.md)
 
-# Overview  
-### This source introduces how to deploy 5G Core on AWS Cloud for a private 5G service and build and operate a CI/CD pipeline.
+Overview  
+--------
+
+### 해당 프로젝트는 Private 5G 서비스를 위해 AWS 클라우드에 5G 코어를 배포하고 CI/CD 파이프라인을 구축하여 운영하는 방법을 소개합니다.
+
 ![Architecture](https://vagabond-mongoose-695.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F1393b3fa-f8b3-4acc-8a30-40f7e425cff0%2F82428a33-def2-444a-b8f7-9a568e2af46d%2FDemo-all-Architecture_v2-0.%25EC%25A0%2584%25EC%25B2%25B4%25EA%25B5%25AC%25EC%2584%25B1%25EB%258F%2584_v3.drawio.png?table=block&id=6fd567e5-dc3b-4ee1-9591-36da4af3a19e&spaceId=1393b3fa-f8b3-4acc-8a30-40f7e425cff0&width=2000&userId=&cache=v2)
 
 ## Download
@@ -621,4 +626,4 @@ cdk destroy
 License
 -------
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT-0 License - see the [LICENSE](LICENSE) file for details.
